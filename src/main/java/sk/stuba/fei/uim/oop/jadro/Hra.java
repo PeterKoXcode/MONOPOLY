@@ -5,6 +5,7 @@ public class Hra {
     public Hra() {
         var startHry = new StartHry();
         var hraciePole = new HraciePole();
+        var balicekKariet = new BalicekKariet();
 
     }
 }
