@@ -5,16 +5,16 @@ import sk.stuba.fei.uim.oop.utility.KeyboardInput;
 
 import java.util.ArrayList;
 
-public class StartHry {
+public class Hraci {
     private int pocetHracov = 0;
     public ArrayList<Hrac> poleHracov;
 
-    public StartHry() {
-        setStartHry();
+    public Hraci() {
+        setHraci();
     }
 
 
-    private void setStartHry() {
+    private void setHraci() {
         this.pocetHracov = nacitanieHracov(pocetHracov);
         System.out.println(pocetHracov);
         poleHracov = new ArrayList<>();

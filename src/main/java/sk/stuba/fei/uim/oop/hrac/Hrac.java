@@ -7,9 +7,14 @@ import java.util.ArrayList;
 public class Hrac {
     public String name;
     public double peniaze = 10000.0;
-    public int pozicia;
+    public int pozicia = 0;
     public ArrayList<Policko> vlastnictvo = new ArrayList<>();
+    public boolean uvazneny = false;
+    public int pocetKolVoVazbe;
 
+    public int padlo(){
+        return (int) (Math.random() * 6 + 1);
+    }
 
     public Hrac(ArrayList<Policko> vlastnictvo) {
         this.vlastnictvo = vlastnictvo;

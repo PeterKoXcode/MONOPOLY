@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class HraciePole {
     //{"1","2","2","3","2","2","1","2","2","3","2","2","1","2","2","3","2","2","1","2","2","3","2","2"}
-    private final ArrayList<Policko> hraciePole;
+    public final ArrayList<Policko> hraciePole;
 
     public HraciePole() {
         hraciePole = new ArrayList<>();

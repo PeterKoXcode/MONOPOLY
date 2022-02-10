@@ -1,6 +1,7 @@
 package sk.stuba.fei.uim.oop.jadro;
 
 import sk.stuba.fei.uim.oop.sance.*;
+
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class BalicekKariet{
@@ -23,7 +24,7 @@ public class BalicekKariet{
                 case 3:
                 case 8:
                 case 14:
-                    balicekKariet.add(new SancaOutOfJailForFree());
+                    balicekKariet.add(new SancaPresunNaStart());
                     break;
                 case 0:
                 case 5:
@@ -37,6 +38,7 @@ public class BalicekKariet{
                     break;
             }
         }
+
 
     }
 }
