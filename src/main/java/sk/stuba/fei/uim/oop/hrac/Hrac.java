@@ -5,12 +5,12 @@ import sk.stuba.fei.uim.oop.policko.Policko;
 import java.util.ArrayList;
 
 public class Hrac {
-    public String name;
-    public double peniaze = 10000.0;
-    public int pozicia = 0;
-    public ArrayList<Policko> vlastnictvo = new ArrayList<>();
-    public boolean uvazneny = false;
-    public int pocetKolVoVazbe;
+    private String name;
+    private double peniaze = 10000.0;
+    private int pozicia = 0;
+    private ArrayList<Policko> vlastnictvo;
+    private boolean uvazneny = false;
+    private int pocetKolVoVazbe = 0;
 
     public int padlo(){
         return (int) (Math.random() * 6 + 1);
@@ -42,6 +42,7 @@ public class Hrac {
 
     }
 
+
     public String getName() {
         return name;
     }
@@ -64,5 +65,21 @@ public class Hrac {
 
     public void setPozicia(int pozicia) {
         this.pozicia = pozicia;
+    }
+
+    public boolean isUvazneny() {
+        return uvazneny;
+    }
+
+    public void setUvazneny(boolean uvazneny) {
+        this.uvazneny = uvazneny;
+    }
+
+    public int getPocetKolVoVazbe() {
+        return pocetKolVoVazbe;
+    }
+
+    public void setPocetKolVoVazbe(int pocetKolVoVazbe) {
+        this.pocetKolVoVazbe = pocetKolVoVazbe;
     }
 }

@@ -7,12 +7,19 @@ import java.util.ArrayList;
 
 public class Hraci {
     private int pocetHracov = 0;
-    public ArrayList<Hrac> poleHracov;
+    private ArrayList<Hrac> poleHracov;
 
     public Hraci() {
         setHraci();
     }
 
+    public ArrayList<Hrac> getPoleHracov() {
+        return poleHracov;
+    }
+
+    public void setPoleHracov(ArrayList<Hrac> poleHracov) {
+        this.poleHracov = poleHracov;
+    }
 
     private void setHraci() {
         this.pocetHracov = nacitanieHracov(pocetHracov);

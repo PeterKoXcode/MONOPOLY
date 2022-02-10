@@ -6,7 +6,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class BalicekKariet{
 
-    ArrayBlockingQueue<Sanca> balicekKariet = new ArrayBlockingQueue<Sanca>(15);
+    private ArrayBlockingQueue<Sanca> balicekKariet = new ArrayBlockingQueue<Sanca>(15);
 
     public BalicekKariet() {
         for(int i = 0; i < 15; i++){
