@@ -18,69 +18,64 @@ public class Hra {
     private void priebehHry(){
         int hracNaTahu = 1;
         System.out.println("-----------------------------");
-        while(hraci.getPoleHracov().size() != 1){
-            if(hracNaTahu == hraci.getPoleHracov().size()+1){                                                                // podla poctu hracov nastavuje pocet kol kym sa vsetci vystriedaju a zacne odznova
+        while(this.hraci.getPoleHracov().size() != 1){
+            if(hracNaTahu == this.hraci.getPoleHracov().size()+1){                                                                // podla poctu hracov nastavuje pocet kol kym sa vsetci vystriedaju a zacne odznova
                 hracNaTahu = 1;
             }
+            int pocetHracov = this.hraci.getPoleHracov().size(); //osetrenie Index Out Of Bounds Exception
+            if(!this.hraci.getPoleHracov().get(hracNaTahu - 1).isUvazneny()) {                                                        // osetrenie ze hrac moze normalne hadzat kockou (neni vo vazeni)
+                System.out.println("Na rade je " + this.hraci.getPoleHracov().get(hracNaTahu - 1).getName());
+                int hodnotaHodu = this.hraci.getPoleHracov().get(hracNaTahu - 1).padlo();                                         // hod kockou
+                this.hraci.getPoleHracov().get(hracNaTahu - 1).setPozicia(this.hraci.getPoleHracov().get(hracNaTahu-1).getPozicia()+hodnotaHodu);       // posun o tolko policok kolko padlo na kocke
+                System.out.println(this.hraci.getPoleHracov().get(hracNaTahu - 1).getName() + " hodil na kocke " + hodnotaHodu);
+                if (this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia() > 23) {                                                // osetrenie ze policko po poslednom policku bude znova start a takto dokola
+                    int rozdiel = this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia() - 23;
+                    this.hraci.getPoleHracov().get(hracNaTahu - 1).setPozicia(rozdiel-1);
 
-            if(!hraci.getPoleHracov().get(hracNaTahu - 1).isUvazneny()) {                                                        // osetrenie ze hrac moze normalne hadzat kockou (neni vo vazeni)
-                System.out.println("Na rade je " + hraci.getPoleHracov().get(hracNaTahu - 1).getName());
-                int hodnotaHodu = hraci.getPoleHracov().get(hracNaTahu - 1).padlo();                                         // hod kockou
-                hraci.getPoleHracov().get(hracNaTahu - 1).setPozicia(hraci.getPoleHracov().get(hracNaTahu-1).getPozicia()+hodnotaHodu);       // posun o tolko policok kolko padlo na kocke
-                System.out.println(hraci.getPoleHracov().get(hracNaTahu - 1).getName() + " hodil na kocke " + hodnotaHodu);
-                if (hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia() > 23) {                                                // osetrenie ze policko po poslednom policku bude znova start a takto dokola
-                    int rozdiel = hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia() - 23;
-                    hraci.getPoleHracov().get(hracNaTahu - 1).setPozicia(rozdiel-1);
-
-                    //hraci.poleHracov.get(hracNaTahu-1).setPeniaze(hraci.poleHracov.get(hracNaTahu-1).getPeniaze()+3000.0);        // ak presiel startom, dostane odmenu
+                    //this.hraci.getPoleHracov().get(hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze()+3000.0);        // ak presiel startom, dostane odmenu
                 }
-                System.out.println(hraci.getPoleHracov().get(hracNaTahu - 1).getName() + " stoji na policku cislo " + hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia());
-                System.out.println(hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze());
+                System.out.println(this.hraci.getPoleHracov().get(hracNaTahu - 1).getName() + " stoji na policku cislo " + this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia());
+                System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze());
                 navstivenePolicko(hracNaTahu);                                                                          // skumame na akom policku som zastal
-//                if(hraci.poleHracov.size() == 1) {
-//                    break;
-//                }
+
             }
             else{
-                System.out.println(hraci.getPoleHracov().get(hracNaTahu - 1).getName()+" nehrá ešte "+(hraci.getPoleHracov().get(hracNaTahu-1).getPocetKolVoVazbe()-1)+". kolo");
-                hraci.getPoleHracov().get(hracNaTahu-1).setPocetKolVoVazbe(hraci.getPoleHracov().get(hracNaTahu-1).getPocetKolVoVazbe()-1);         // counter kolko kolbude hrac este vo vazbe
-                if(hraci.getPoleHracov().get(hracNaTahu-1).getPocetKolVoVazbe() == 0){
-                    hraci.getPoleHracov().get(hracNaTahu - 1).setUvazneny(false);                                            // pokial je pocet kol nula , tak nastavime ze hrac nie je vazneny
+                System.out.println(this.hraci.getPoleHracov().get(hracNaTahu - 1).getName()+" nehrá ešte "+(this.hraci.getPoleHracov().get(hracNaTahu-1).getPocetKolVoVazbe()-1)+". kolo");
+                this.hraci.getPoleHracov().get(hracNaTahu-1).setPocetKolVoVazbe(this.hraci.getPoleHracov().get(hracNaTahu-1).getPocetKolVoVazbe()-1);         // counter kolko kolbude hrac este vo vazbe
+                if(this.hraci.getPoleHracov().get(hracNaTahu-1).getPocetKolVoVazbe() == 0){
+                    this.hraci.getPoleHracov().get(hracNaTahu - 1).setUvazneny(false);                                            // pokial je pocet kol nula , tak nastavime ze hrac nie je vazneny
                 }
             }
-//            if(hracNaTahu == 2 && startHry.poleHracov.get(hracNaTahu-1).name.equals("Jakub")) {
-//                startHry.poleHracov.remove(hracNaTahu - 1);
-//                hracNaTahu--;
-//            }
 
-
-            hracNaTahu++;
+            if(pocetHracov == this.hraci.getPoleHracov().size()){                                                            // pokial za toto kolo nevypadol ziaden hrac tak bude dalsi na rade
+                hracNaTahu++;                                                                                           // pokial vsak vypadol tak jeho miesto nahradi dalsi hrac a tym padom sa nemusi navysovat
+            }
         }
-        System.out.println("WINNER IS "+ hraci.getPoleHracov().get(0).getName());
+        System.out.println("WINNER IS "+ this.hraci.getPoleHracov().get(0).getName());
     }
     private void navstivenePolicko(int hracNaTahu){
-        switch (hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()){
+        switch (this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()){
             case 0:
                 System.out.println("Políčko štart");
                 break;
             case 6:
-                System.out.println(hraci.getPoleHracov().get(hracNaTahu - 1).getName()+" navštívil väzenie.");
+                System.out.println(this.hraci.getPoleHracov().get(hracNaTahu - 1).getName()+" navštívil väzenie.");
                 break;
             case 12:
                 //policia
-                hraci.getPoleHracov().get(hracNaTahu-1).setUvazneny(true);
-                hraci.getPoleHracov().get(hracNaTahu-1).setPocetKolVoVazbe(2);
-                System.out.println(hraci.getPoleHracov().get(hracNaTahu-1).getName() + " bol uväznený na 2 kolá");
+                this.hraci.getPoleHracov().get(hracNaTahu-1).setUvazneny(true);
+                this.hraci.getPoleHracov().get(hracNaTahu-1).setPocetKolVoVazbe(2);
+                System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName() + " bol uväznený na 2 kolá");
                 break;
             case 18:
                 //dane
-                hraci.getPoleHracov().get(hracNaTahu-1).setPeniaze(hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze()-2000.0);
-                if(hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze() <= 0.0){
-                    System.out.println(hraci.getPoleHracov().get(hracNaTahu-1).getName()+" nemá dostatok financií a vypadáva z hry.");
-                    hraci.getPoleHracov().remove(hraci.getPoleHracov().get(hracNaTahu-1));
+                this.hraci.getPoleHracov().get(hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze()-2000.0);
+                if(this.hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze() <= 0.0){
+                    System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" nemá dostatok financií a vypadáva z hry.");
+                    this.hraci.getPoleHracov().remove(this.hraci.getPoleHracov().get(hracNaTahu-1));
                 }
                 else{
-                    System.out.println(hraci.getPoleHracov().get(hracNaTahu-1).getName()+" zaplatil daň 2000.0");
+                    System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" zaplatil daň 2000.0");
                 }
                 break;
             case 3:

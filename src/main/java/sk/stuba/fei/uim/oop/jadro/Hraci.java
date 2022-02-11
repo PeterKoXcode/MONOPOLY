@@ -14,7 +14,7 @@ public class Hraci {
     }
 
     public ArrayList<Hrac> getPoleHracov() {
-        return poleHracov;
+        return this.poleHracov;
     }
 
     public void setPoleHracov(ArrayList<Hrac> poleHracov) {
@@ -22,14 +22,14 @@ public class Hraci {
     }
 
     private void setHraci() {
-        this.pocetHracov = nacitanieHracov(pocetHracov);
-        System.out.println(pocetHracov);
-        poleHracov = new ArrayList<>();
-        for(int i = 0; i < pocetHracov; i++){
+        this.pocetHracov = nacitanieHracov(this.pocetHracov);
+        System.out.println(this.pocetHracov);
+        this.poleHracov = new ArrayList<>();
+        for(int i = 0; i < this.pocetHracov; i++){
             String meno = KeyboardInput.readString("Zadajte meno "+ (i+1) +". hráča");
-            poleHracov.add(new Hrac(meno));
+            this.poleHracov.add(new Hrac(meno));
         }
-        for(Hrac hrac : poleHracov){
+        for(Hrac hrac : this.poleHracov){
             System.out.println(hrac.getName());
         }
     }

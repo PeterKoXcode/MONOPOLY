@@ -9,29 +9,29 @@ public class HraciePole {
     private final ArrayList<Policko> hraciePole;
 
     public HraciePole() {
-        hraciePole = new ArrayList<>();
+        this.hraciePole = new ArrayList<>();
         for(int i = 0; i < 24 ; i++){
             switch (i){
                 case 0:
-                    hraciePole.add(new PolickoStart());
+                    this.hraciePole.add(new PolickoStart());
                     break;
                 case 6:
-                    hraciePole.add(new PolickoVazanie());
+                    this.hraciePole.add(new PolickoVazanie());
                     break;
                 case 12:
-                    hraciePole.add(new PolickoPolicia());
+                    this.hraciePole.add(new PolickoPolicia());
                     break;
                 case 18:
-                    hraciePole.add(new PolickoDane());
+                    this.hraciePole.add(new PolickoDane());
                     break;
                 case 3:
                 case 9:
                 case 15:
                 case 21:
-                    hraciePole.add(new PolickoSanca());
+                    this.hraciePole.add(new PolickoSanca());
                     break;
                 default:
-                    hraciePole.add(new PolickoNehnutelnost());
+                    this.hraciePole.add(new PolickoNehnutelnost());
             }
         }
     }

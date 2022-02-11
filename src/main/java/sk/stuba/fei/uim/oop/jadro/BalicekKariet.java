@@ -14,27 +14,27 @@ public class BalicekKariet{
                 case 1:
                 case 6:
                 case 11:
-                    balicekKariet.add(new SancaDostatPeniaze());
+                    this.balicekKariet.add(new SancaDostatPeniaze());
                     break;
                 case 2:
                 case 9:
                 case 12:
-                    balicekKariet.add(new SancaIstDoVazenia());
+                    this.balicekKariet.add(new SancaIstDoVazenia());
                     break;
                 case 3:
                 case 8:
                 case 14:
-                    balicekKariet.add(new SancaPresunNaStart());
+                    this.balicekKariet.add(new SancaPresunNaStart());
                     break;
                 case 0:
                 case 5:
                 case 10:
-                    balicekKariet.add(new SancaPosunVPred());
+                    this.balicekKariet.add(new SancaPosunVPred());
                     break;
                 case 4:
                 case 7:
                 case 13:
-                    balicekKariet.add(new SancaZaplatitDane());
+                    this.balicekKariet.add(new SancaZaplatitDane());
                     break;
             }
         }
