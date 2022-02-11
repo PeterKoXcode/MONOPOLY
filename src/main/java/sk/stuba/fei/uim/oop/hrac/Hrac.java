@@ -8,7 +8,7 @@ public class Hrac {
     private String name;
     private double peniaze = 10000.0;
     private int pozicia = 0;
-    private ArrayList<Policko> vlastnictvo;
+    private ArrayList<Policko> vlastnictvo = new ArrayList<>();
     private boolean uvazneny = false;
     private int pocetKolVoVazbe = 0;
 

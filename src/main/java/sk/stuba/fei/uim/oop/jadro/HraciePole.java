@@ -8,6 +8,10 @@ public class HraciePole {
     //{"1","2","2","3","2","2","1","2","2","3","2","2","1","2","2","3","2","2","1","2","2","3","2","2"}
     private final ArrayList<Policko> hraciePole;
 
+    public ArrayList<Policko> getHraciePole() {
+        return hraciePole;
+    }
+
     public HraciePole() {
         this.hraciePole = new ArrayList<>();
         for(int i = 0; i < 24 ; i++){

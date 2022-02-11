@@ -2,6 +2,8 @@ package sk.stuba.fei.uim.oop.jadro;
 
 // Private field 'hraciePole' is assigned but never accessed
 
+import sk.stuba.fei.uim.oop.policko.*;
+
 public class Hra {
 
     private final Hraci hraci;
@@ -18,6 +20,12 @@ public class Hra {
     private void priebehHry(){
         int hracNaTahu = 1;
         System.out.println("-----------------------------");
+//        Policko init = this.hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(hracNaTahu).getPozicia());
+//        init.setOwner(hraci.getPoleHracov().get(hracNaTahu));
+//        if(init.getOwner() == hraci.getPoleHracov().get(hracNaTahu)){
+//            System.out.println("funguje to");
+//        }
+//        System.out.println("-----------------------------");
         while(this.hraci.getPoleHracov().size() != 1){
             if(hracNaTahu == this.hraci.getPoleHracov().size()+1){                                                                // podla poctu hracov nastavuje pocet kol kym sa vsetci vystriedaju a zacne odznova
                 hracNaTahu = 1;
@@ -50,42 +58,41 @@ public class Hra {
             if(pocetHracov == this.hraci.getPoleHracov().size()){                                                            // pokial za toto kolo nevypadol ziaden hrac tak bude dalsi na rade
                 hracNaTahu++;                                                                                           // pokial vsak vypadol tak jeho miesto nahradi dalsi hrac a tym padom sa nemusi navysovat
             }
+            int i = 0;
+            for(Policko policko : hraciePole.getHraciePole()){
+                if(policko instanceof PolickoNehnutelnost){
+                    PolickoNehnutelnost polickoNehnutelnost = (PolickoNehnutelnost) policko;
+                    System.out.println(i+" "+((polickoNehnutelnost.getOwner() == null)? "null": polickoNehnutelnost.getOwner().getName()));
+                    i++;
+                }
+            }
         }
         System.out.println("WINNER IS "+ this.hraci.getPoleHracov().get(0).getName());
     }
     private void navstivenePolicko(int hracNaTahu){
         switch (this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()){
             case 0:
-                System.out.println("Políčko štart");
+                hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()).funkciaPolicka(hraci,hracNaTahu); // vypise "Políčko štart"
                 break;
             case 6:
-                System.out.println(this.hraci.getPoleHracov().get(hracNaTahu - 1).getName()+" navštívil väzenie.");
+                hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()).funkciaPolicka(hraci,hracNaTahu); // vypise "Navteva vazenia"
                 break;
             case 12:
-                //policia
-                this.hraci.getPoleHracov().get(hracNaTahu-1).setUvazneny(true);
-                this.hraci.getPoleHracov().get(hracNaTahu-1).setPocetKolVoVazbe(2);
-                System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName() + " bol uväznený na 2 kolá");
+                hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()).funkciaPolicka(hraci,hracNaTahu); // na 2 kola zavrie hraca do vazby
                 break;
             case 18:
-                //dane
-                this.hraci.getPoleHracov().get(hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze()-2000.0);
-                if(this.hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze() <= 0.0){
-                    System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" nemá dostatok financií a vypadáva z hry.");
-                    this.hraci.getPoleHracov().remove(this.hraci.getPoleHracov().get(hracNaTahu-1));
-                }
-                else{
-                    System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" zaplatil daň 2000.0");
-                }
+                hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()).funkciaPolicka(hraci,hracNaTahu); // hrac zaplati dane v hodnote 2000.0
                 break;
             case 3:
             case 9:
             case 15:
             case 21:
-                System.out.println("sanca");
+                hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()).funkciaPolicka(hraci,hracNaTahu);
                 break;
             default:
-                System.out.println("nehnutelnost");
+                //System.out.println("nehnutelnost");
+                hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()).funkciaPolicka(hraci,hracNaTahu);
+                //new PolickoNehnutelnost(hracNaTahu,hraci,this.hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()));
         }
     }
 
