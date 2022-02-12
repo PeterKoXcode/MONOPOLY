@@ -33,15 +33,12 @@ public class PolickoNehnutelnost extends Policko{
             this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze()-this.cenaStojneho);   // hrac ktory stupil na nehnutelnost zaplati stojne
             if(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze() <= 0.0){
                 System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" nemá dostatok financií a vypadáva z hry");
-                for(int i = 0; i < this.hraci.getPoleHracov().get(hracNaTahu-1).getVlastnictvo2().size();i++){
-                    //this.hraci.getPoleHracov().get(hracNaTahu-1).getVlastnictvo().set(i,null);
-                    this.hraci.getPoleHracov().get(hracNaTahu-1).setPozicia(this.hraci.getPoleHracov().get(hracNaTahu-1).getVlastnictvo2().get(i));
+                //this.hraci.getPoleHracov().get(hracNaTahu-1).getVlastnictvo().set(i,null);
 
 
-                    // scenar 1 - pri vytvarani ownera konkretneho policka , zapisovat niekam
+                // scenar 1 - pri vytvarani ownera konkretneho policka , zapisovat niekam
 
-                    // osetrit vymazanie majetku
-                }
+                // osetrit vymazanie majetku
                 this.hraci.getPoleHracov().remove(this.hraci.getPoleHracov().get(this.hracNaTahu-1));
                 return;
             }
@@ -55,7 +52,6 @@ public class PolickoNehnutelnost extends Policko{
                     this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze()-this.cenaOdkupi);
                     System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" odkúpil nehnuteľnosť od "+this.owner.getName()+" za cenu "+this.cenaOdkupi);
                     this.owner = this.hraci.getPoleHracov().get(this.hracNaTahu-1);
-                    this.hraci.getPoleHracov().get(hracNaTahu-1).getVlastnictvo2().add(this.hraci.getPoleHracov().get(hracNaTahu-1).getPozicia());
                 }
             }
             else{
@@ -72,7 +68,6 @@ public class PolickoNehnutelnost extends Policko{
                     this.naPredaj = false;
                     this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze()-this.cenaKupi);
                     this.owner = this.hraci.getPoleHracov().get(this.hracNaTahu-1);
-                    this.hraci.getPoleHracov().get(hracNaTahu-1).getVlastnictvo2().add(this.hraci.getPoleHracov().get(hracNaTahu-1).getPozicia());
                     System.out.println(this.owner.getName()+" kúpil nehnuteľnosť za cenu "+this.cenaKupi);
                 }
             }

@@ -17,11 +17,11 @@ public class SancaIstDoVazenia extends Sanca{
     }
 
     private void printVazenie(){
-        System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" si vytiahol šancu ísť do väzenia.");
-        this.hraci.getPoleHracov().get(hracNaTahu-1).setUvazneny(true);
-        this.hraci.getPoleHracov().get(hracNaTahu-1).setPocetKolVoVazbe(2);
-        System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName() + " bol uväznený na 2 kolá");
-        this.hraci.getPoleHracov().get(hracNaTahu-1).setPozicia(6);
+        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" si vytiahol šancu ísť do väzenia.");
+        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setUvazneny(true);
+        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPocetKolVoVazbe(2);
+        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName() + " bol uväznený na 2 kolá");
+        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPozicia(6);
     }
 
     public int getHracNaTahu() {

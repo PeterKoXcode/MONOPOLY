@@ -18,9 +18,9 @@ public class SancaDostatPeniaze extends Sanca{
     }
 
     private void printMoney(){
-        System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" si vytiahol šancu získať peniaze.");
-        this.hraci.getPoleHracov().get(hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze()+vyhra);
-        System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" získal peniaze v hodnote "+ vyhra);
+        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" si vytiahol šancu získať peniaze.");
+        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze()+this.vyhra);
+        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" získal peniaze v hodnote "+ this.vyhra);
     }
 
     public int getHracNaTahu() {

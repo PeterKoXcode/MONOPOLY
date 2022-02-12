@@ -35,13 +35,13 @@ public class Hra {
                     int rozdiel = this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia() - 23;
                     this.hraci.getPoleHracov().get(hracNaTahu - 1).setPozicia(rozdiel-1);
 
-                    this.hraci.getPoleHracov().get(hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze()+startMoney);        // ak presiel startom, dostane odmenu
-                    System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" prešiel štartom a získal peniaze v hodnote "+startMoney);
+                    this.hraci.getPoleHracov().get(hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze()+this.startMoney);        // ak presiel startom, dostane odmenu
+                    System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" prešiel štartom a získal peniaze v hodnote "+this.startMoney);
                 }
                 System.out.println(this.hraci.getPoleHracov().get(hracNaTahu - 1).getName() + " stoji na policku cislo " + this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia());
                 System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze());
 
-                hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()).funkciaPolicka(hraci,hracNaTahu,balicekKariet,hraciePole);// skumame na akom policku som zastal
+                hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()).funkciaPolicka(this.hraci,hracNaTahu,this.balicekKariet,this.hraciePole);// skumame na akom policku som zastal
             }
             else{
                 System.out.println(this.hraci.getPoleHracov().get(hracNaTahu - 1).getName()+" nehrá ešte "+(this.hraci.getPoleHracov().get(hracNaTahu-1).getPocetKolVoVazbe()-1)+". kolo");

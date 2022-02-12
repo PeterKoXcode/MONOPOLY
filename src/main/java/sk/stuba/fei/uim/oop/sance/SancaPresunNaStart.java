@@ -6,6 +6,7 @@ import sk.stuba.fei.uim.oop.jadro.HraciePole;
 
 public class SancaPresunNaStart extends Sanca{
 
+    private final double startMoney = 3000.0;
     private int hracNaTahu;
     private Hraci hraci;
 
@@ -17,8 +18,10 @@ public class SancaPresunNaStart extends Sanca{
     }
 
     private void printSancaStart(){
-        System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" si vytiahol šancu rýchly presun na štart.");
-        this.hraci.getPoleHracov().get(hracNaTahu-1).setPozicia(0);
+        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" si vytiahol šancu rýchly presun na štart.");
+        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPozicia(0);
+        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze()+this.startMoney);
+        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" prešiel štartom a získal peniaze v hodnote "+this.startMoney);
     }
 
     public int getHracNaTahu() {

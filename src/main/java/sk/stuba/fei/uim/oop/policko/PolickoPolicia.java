@@ -18,10 +18,10 @@ public class PolickoPolicia extends Policko{
     public PolickoPolicia(){}
 
     private void printPolice(){
-        this.hraci.getPoleHracov().get(hracNaTahu-1).setUvazneny(true);
-        this.hraci.getPoleHracov().get(hracNaTahu-1).setPocetKolVoVazbe(2);
-        System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName() + " bol uväznený na 2 kolá");
-        this.hraci.getPoleHracov().get(hracNaTahu-1).setPozicia(6);
+        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setUvazneny(true);
+        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPocetKolVoVazbe(2);
+        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName() + " bol uväznený na 2 kolá");
+        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPozicia(6);
     }
     public int getHracNaTahu() {
         return hracNaTahu;

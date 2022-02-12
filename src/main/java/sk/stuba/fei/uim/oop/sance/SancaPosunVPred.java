@@ -21,11 +21,11 @@ public class SancaPosunVPred extends Sanca{
     }
 
     private void printPosunVPred(){
-        System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" si vytiahol šancu posun vpred.");
+        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" si vytiahol šancu posun vpred.");
         int randNum = posun();
-        System.out.println(this.hraci.getPoleHracov().get(hracNaTahu - 1).getName()+" sa pohne o " + randNum + " dopredu.");
-        this.hraci.getPoleHracov().get(hracNaTahu-1).setPozicia(this.hraci.getPoleHracov().get(hracNaTahu-1).getPozicia()+randNum);
-        hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(hracNaTahu - 1).getPozicia()).funkciaPolicka(hraci,hracNaTahu,balicekKariet,hraciePole);
+        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu - 1).getName()+" sa pohne o " + randNum + " dopredu.");
+        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPozicia(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPozicia()+randNum);
+        this.hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(this.hracNaTahu - 1).getPozicia()).funkciaPolicka(this.hraci,this.hracNaTahu,this.balicekKariet,this.hraciePole);
 
     }
     private int posun(){

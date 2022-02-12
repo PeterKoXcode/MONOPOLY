@@ -17,18 +17,18 @@ public class SancaZaplatitDane extends Sanca{
     }
 
     private void printSancaDane(){
-        System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" si vytiahol šancu zaplatiť dane.");
-        this.hraci.getPoleHracov().get(hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze()-cenaDane);
-        if(this.hraci.getPoleHracov().get(hracNaTahu-1).getPeniaze() <= 0.0){
-            System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" nemá dostatok financií a vypadáva z hry.");
+        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" si vytiahol šancu zaplatiť dane.");
+        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze()-this.cenaDane);
+        if(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze() <= 0.0){
+            System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" nemá dostatok financií a vypadáva z hry.");
 
             // odstranenie majetku
 
 
-            this.hraci.getPoleHracov().remove(this.hraci.getPoleHracov().get(hracNaTahu-1));
+            this.hraci.getPoleHracov().remove(this.hraci.getPoleHracov().get(this.hracNaTahu-1));
         }
         else{
-            System.out.println(this.hraci.getPoleHracov().get(hracNaTahu-1).getName()+" zaplatil daň 2000.0");
+            System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" zaplatil daň 2000.0");
         }
     }
 

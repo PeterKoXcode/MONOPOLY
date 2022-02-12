@@ -26,14 +26,14 @@ public class PolickoSanca extends Policko{
 
     private void printSanca(){
         System.out.println("Políčko šance:");
-        Sanca vrchnakarta = balicekKariet.getBalicekKariet().get(0);
+        Sanca vrchnakarta = this.balicekKariet.getBalicekKariet().get(0);
 
 
-        vrchnakarta.typSance(hraci,hracNaTahu,hraciePole,balicekKariet);
+        vrchnakarta.typSance(this.hraci,this.hracNaTahu,this.hraciePole,this.balicekKariet);
 
 
-        balicekKariet.getBalicekKariet().add(vrchnakarta);
-        balicekKariet.getBalicekKariet().remove(0);
+        this.balicekKariet.getBalicekKariet().add(vrchnakarta);
+        this.balicekKariet.getBalicekKariet().remove(0);
 
 
 
