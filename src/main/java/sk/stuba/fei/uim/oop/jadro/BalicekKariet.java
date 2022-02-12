@@ -2,13 +2,18 @@ package sk.stuba.fei.uim.oop.jadro;
 
 import sk.stuba.fei.uim.oop.sance.*;
 
-import java.util.concurrent.ArrayBlockingQueue;
+import java.util.ArrayList;
 
 public class BalicekKariet{
 
-    private ArrayBlockingQueue<Sanca> balicekKariet = new ArrayBlockingQueue<Sanca>(15);
+    private final ArrayList<Sanca> balicekKariet;
+
+    public ArrayList<Sanca> getBalicekKariet() {
+        return balicekKariet;
+    }
 
     public BalicekKariet() {
+        this.balicekKariet = new ArrayList<>();
         for(int i = 0; i < 15; i++){
             switch (i){
                 case 1:

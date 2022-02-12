@@ -1,6 +1,8 @@
 package sk.stuba.fei.uim.oop.policko;
 
+import sk.stuba.fei.uim.oop.jadro.BalicekKariet;
 import sk.stuba.fei.uim.oop.jadro.Hraci;
+import sk.stuba.fei.uim.oop.jadro.HraciePole;
 
 public class PolickoVazanie extends Policko{
 
@@ -8,7 +10,7 @@ public class PolickoVazanie extends Policko{
     private Hraci hraci;
 
     @Override
-    public void funkciaPolicka(Hraci hraci, int hracNaTahu) {
+    public void funkciaPolicka(Hraci hraci, int hracNaTahu, BalicekKariet balicekKariet, HraciePole hraciePole) {
         this.hraci = hraci;
         this.hracNaTahu = hracNaTahu;
         printJail();
