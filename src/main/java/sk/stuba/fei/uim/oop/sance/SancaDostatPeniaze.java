@@ -1,5 +1,6 @@
 package sk.stuba.fei.uim.oop.sance;
 
+import sk.stuba.fei.uim.oop.hrac.Hrac;
 import sk.stuba.fei.uim.oop.jadro.BalicekKariet;
 import sk.stuba.fei.uim.oop.jadro.Hraci;
 import sk.stuba.fei.uim.oop.jadro.HraciePole;
@@ -18,9 +19,10 @@ public class SancaDostatPeniaze extends Sanca{
     }
 
     private void printMoney(){
-        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" si vytiahol šancu získať peniaze.");
-        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze()+this.vyhra);
-        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" získal peniaze v hodnote "+ this.vyhra);
+        Hrac currentPlayer = this.hraci.getPoleHracov().get(this.hracNaTahu-1);
+        System.out.println(currentPlayer.getName()+" si vytiahol šancu získať peniaze.");
+        currentPlayer.setPeniaze(currentPlayer.getPeniaze()+this.vyhra);
+        System.out.println(currentPlayer.getName()+" získal peniaze v hodnote "+ this.vyhra);
     }
 
     public int getHracNaTahu() {

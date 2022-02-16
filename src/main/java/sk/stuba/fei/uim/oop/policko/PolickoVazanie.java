@@ -10,7 +10,7 @@ public class PolickoVazanie extends Policko{
     private Hraci hraci;
 
     @Override
-    public void funkciaPolicka(Hraci hraci, int hracNaTahu, BalicekKariet balicekKariet, HraciePole hraciePole) {
+    public void funkciaPolicka(Hraci hraci, int hracNaTahu, HraciePole hraciePole) {
         this.hraci = hraci;
         this.hracNaTahu = hracNaTahu;
         printJail();

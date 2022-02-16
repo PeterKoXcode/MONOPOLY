@@ -1,11 +1,13 @@
 package sk.stuba.fei.uim.oop.sance;
 
+import sk.stuba.fei.uim.oop.hrac.Hrac;
 import sk.stuba.fei.uim.oop.jadro.BalicekKariet;
 import sk.stuba.fei.uim.oop.jadro.Hraci;
 import sk.stuba.fei.uim.oop.jadro.HraciePole;
 
 public class SancaPosunVPred extends Sanca{
 
+    private final double startMoney = 3000.0;
     private int hracNaTahu;
     private Hraci hraci;
     private HraciePole hraciePole;
@@ -21,13 +23,27 @@ public class SancaPosunVPred extends Sanca{
     }
 
     private void printPosunVPred(){
-        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" si vytiahol šancu posun vpred.");
+        Hrac currentPlayer = this.hraci.getPoleHracov().get(this.hracNaTahu-1);
+        System.out.println(currentPlayer.getName()+" si vytiahol šancu posun vpred.");
         int randNum = posun();
-        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu - 1).getName()+" sa pohne o " + randNum + " dopredu.");
-        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPozicia(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPozicia()+randNum);
-        this.hraciePole.getHraciePole().get(this.hraci.getPoleHracov().get(this.hracNaTahu - 1).getPozicia()).funkciaPolicka(this.hraci,this.hracNaTahu,this.balicekKariet,this.hraciePole);
-
+        System.out.println(currentPlayer.getName()+" sa pohne o " + randNum + " dopredu.");
+        currentPlayer.setPozicia(currentPlayer.getPozicia()+randNum);
+        mimoScope(currentPlayer);
+        System.out.println(currentPlayer.getPeniaze());
+        this.hraciePole.getHraciePole().get(currentPlayer.getPozicia()).funkciaPolicka(this.hraci,this.hracNaTahu,this.hraciePole);
+        // hadze tu exception
     }
+
+    private void mimoScope(Hrac currentPlayer){
+        if (currentPlayer.getPozicia() > 23) {                                                                             // osetrenie ze policko po poslednom policku bude znova start a takto dokola
+            int rozdiel = currentPlayer.getPozicia() - 23;
+            currentPlayer.setPozicia(rozdiel-1);
+
+            currentPlayer.setPeniaze(currentPlayer.getPeniaze()+this.startMoney);                                           // ak presiel startom, dostane odmenu
+            System.out.println(currentPlayer.getName()+" prešiel štartom a získal peniaze v hodnote "+this.startMoney);
+        }
+    }
+
     private int posun(){
         return (int) (Math.random() * 5 + 1);
     }

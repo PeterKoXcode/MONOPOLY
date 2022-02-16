@@ -5,7 +5,6 @@ public class PripravaHry {
     public PripravaHry() {
         var Hraci = new Hraci();
         var hraciePole = new HraciePole();
-        var balicekKariet = new BalicekKariet();
-        new Hra(Hraci,hraciePole,balicekKariet);
+        new Hra(Hraci,hraciePole);
     }
 }

@@ -8,7 +8,7 @@ public class PolickoStart extends Policko{
 
 
     @Override
-    public void funkciaPolicka(Hraci hraci, int hracNaTahu, BalicekKariet balicekKariet, HraciePole hraciePole) {
+    public void funkciaPolicka(Hraci hraci, int hracNaTahu, HraciePole hraciePole) {
         printStart();
     }
 

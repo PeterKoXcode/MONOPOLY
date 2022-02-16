@@ -10,6 +10,6 @@ public abstract class Policko {
 
     //protected Hrac owner;
 
-    public abstract void funkciaPolicka(Hraci hraci, int hracNaTahu, BalicekKariet balicekKariet, HraciePole hraciePole);
+    public abstract void funkciaPolicka(Hraci hraci, int hracNaTahu, HraciePole hraciePole);
 
 }

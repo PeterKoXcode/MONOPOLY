@@ -15,12 +15,15 @@ public class PolickoNehnutelnost extends Policko{
     private Hrac owner;
     private int hracNaTahu;
     private Hraci hraci;
+    private HraciePole hraciePole;
+
 
 
     @Override
-    public void funkciaPolicka(Hraci hraci, int hracNaTahu, BalicekKariet balicekKariet, HraciePole hraciePole) {
+    public void funkciaPolicka(Hraci hraci, int hracNaTahu, HraciePole hraciePole) {
         this.hraci = hraci;
         this.hracNaTahu = hracNaTahu;
+        this.hraciePole = hraciePole;
         printNehnutelnost();
     }
 
@@ -29,51 +32,31 @@ public class PolickoNehnutelnost extends Policko{
     }
 
     private void printNehnutelnost(){
-        if(!this.naPredaj && this.owner != this.hraci.getPoleHracov().get(this.hracNaTahu-1)){ // ak hrac ktory stupil na nehnutelnost nie je majitel a nehnutelnost nie je na predaj , tak..
-            this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze()-this.cenaStojneho);   // hrac ktory stupil na nehnutelnost zaplati stojne
-            if(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze() <= 0.0){
-                System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" nemá dostatok financií a vypadáva z hry");
+        Hrac currectPlayer = this.hraci.getPoleHracov().get(this.hracNaTahu-1);
+        if(!this.naPredaj && this.owner != currectPlayer){ // ak hrac ktory stupil na nehnutelnost nie je majitel a nehnutelnost nie je na predaj , tak..
+            currectPlayer.setPeniaze(currectPlayer.getPeniaze()-this.cenaStojneho);   // hrac ktory stupil na nehnutelnost zaplati stojne
+            if(currectPlayer.getPeniaze() <= 0.0){
+                System.out.println(currectPlayer.getName()+" nemá dostatok financií a vypadáva z hry");
                 //this.hraci.getPoleHracov().get(hracNaTahu-1).getVlastnictvo().set(i,null);
+
 
 
                 // scenar 1 - pri vytvarani ownera konkretneho policka , zapisovat niekam
 
                 // osetrit vymazanie majetku
-                this.hraci.getPoleHracov().remove(this.hraci.getPoleHracov().get(this.hracNaTahu-1));
+                this.hraci.getPoleHracov().remove(currectPlayer);
                 return;
             }
             else{
-                System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" zaplatil stojné v hodnote "+this.cenaStojneho);
+                System.out.println(currectPlayer.getName()+" zaplatil stojné v hodnote "+this.cenaStojneho);
             }
-            if(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze() > this.cenaOdkupi){
-                char kupNekup = kupNekupNehnutelnost();
-                if(kupNekup == 'y'){
-                    this.owner.setPeniaze(this.owner.getPeniaze()+this.cenaOdkupi);
-                    this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze()-this.cenaOdkupi);
-                    System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" odkúpil nehnuteľnosť od "+this.owner.getName()+" za cenu "+this.cenaOdkupi);
-                    this.owner = this.hraci.getPoleHracov().get(this.hracNaTahu-1);
-                }
-            }
-            else{
-                System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" nemá dostatok financií na kúpu tejto nehnuteľnosti.");
-            }
+            odkupNehnutelnost(currectPlayer);
         }
-        else if(getOwner() == this.hraci.getPoleHracov().get(this.hracNaTahu-1)){
-            System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" zastal na svojej nehnuteľnosti.");
+        else if(getOwner() == currectPlayer){
+            System.out.println(currectPlayer.getName()+" zastal na svojej nehnuteľnosti.");
         }
         else{
-            if(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze() > this.cenaKupi){
-                char kupNekup = kupNekupNehnutelnost();
-                if(kupNekup == 'y'){
-                    this.naPredaj = false;
-                    this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze()-this.cenaKupi);
-                    this.owner = this.hraci.getPoleHracov().get(this.hracNaTahu-1);
-                    System.out.println(this.owner.getName()+" kúpil nehnuteľnosť za cenu "+this.cenaKupi);
-                }
-            }
-            else{
-                System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" nemá dostatok financií na kúpu tejto nehnuteľnosti.");
-            }
+            kupNehnutelnost(currectPlayer);
         }
     }
 
@@ -88,6 +71,42 @@ public class PolickoNehnutelnost extends Policko{
         }
         return kupNekup;
     }
+
+    private void odkupNehnutelnost(Hrac currectPlayer){
+        if(currectPlayer.getPeniaze() > this.cenaOdkupi){
+            char kupNekup = kupNekupNehnutelnost();
+            if(kupNekup == 'y'){
+                this.owner.setPeniaze(this.owner.getPeniaze()+this.cenaOdkupi);
+                currectPlayer.setPeniaze(currectPlayer.getPeniaze()-this.cenaOdkupi);
+                System.out.println(currectPlayer.getName()+" odkúpil nehnuteľnosť od "+this.owner.getName()+" za cenu "+this.cenaOdkupi);
+                this.owner = currectPlayer;
+            }
+        }
+        else{
+            System.out.println(currectPlayer.getName()+" nemá dostatok financií na kúpu tejto nehnuteľnosti.");
+        }
+    }
+
+    private void kupNehnutelnost(Hrac currectPlayer){
+        if(currectPlayer.getPeniaze() > this.cenaKupi){
+            char kupNekup = kupNekupNehnutelnost();
+            kupCiNe(kupNekup,currectPlayer);
+        }
+        else{
+            System.out.println(currectPlayer.getName()+" nemá dostatok financií na kúpu tejto nehnuteľnosti.");
+        }
+    }
+
+    private void kupCiNe(char kupNekup,Hrac currectPlayer){
+        if(kupNekup == 'y'){
+            this.naPredaj = false;
+            currectPlayer.setPeniaze(currectPlayer.getPeniaze()-this.cenaKupi);
+            this.owner = currectPlayer;
+            System.out.println(this.owner.getName()+" kúpil nehnuteľnosť za cenu "+this.cenaKupi);
+        }
+    }
+
+
 
     public Hrac getOwner() {
         return owner;

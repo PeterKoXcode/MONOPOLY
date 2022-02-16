@@ -13,15 +13,15 @@ public class PolickoSanca extends Policko{
     private HraciePole hraciePole;
 
     @Override
-    public void funkciaPolicka(Hraci hraci, int hracNaTahu, BalicekKariet balicekKariet, HraciePole hraciePole) {
+    public void funkciaPolicka(Hraci hraci, int hracNaTahu, HraciePole hraciePole) {
         this.hraci = hraci;
         this.hracNaTahu = hracNaTahu;
-        this.balicekKariet = balicekKariet;
         this.hraciePole = hraciePole;
         printSanca();
     }
 
-    public PolickoSanca() {
+    public PolickoSanca(BalicekKariet balicekKariet) {
+        this.balicekKariet = balicekKariet;
     }
 
     private void printSanca(){

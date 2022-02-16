@@ -1,5 +1,6 @@
 package sk.stuba.fei.uim.oop.sance;
 
+import sk.stuba.fei.uim.oop.hrac.Hrac;
 import sk.stuba.fei.uim.oop.jadro.BalicekKariet;
 import sk.stuba.fei.uim.oop.jadro.Hraci;
 import sk.stuba.fei.uim.oop.jadro.HraciePole;
@@ -17,18 +18,19 @@ public class SancaZaplatitDane extends Sanca{
     }
 
     private void printSancaDane(){
-        System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" si vytiahol šancu zaplatiť dane.");
-        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze()-this.cenaDane);
-        if(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze() <= 0.0){
-            System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" nemá dostatok financií a vypadáva z hry.");
+        Hrac currentPlayer = this.hraci.getPoleHracov().get(this.hracNaTahu-1);
+        System.out.println(currentPlayer.getName()+" si vytiahol šancu zaplatiť dane.");
+        currentPlayer.setPeniaze(currentPlayer.getPeniaze()-this.cenaDane);
+        if(currentPlayer.getPeniaze() <= 0.0){
+            System.out.println(currentPlayer.getName()+" nemá dostatok financií a vypadáva z hry.");
 
             // odstranenie majetku
 
 
-            this.hraci.getPoleHracov().remove(this.hraci.getPoleHracov().get(this.hracNaTahu-1));
+            this.hraci.getPoleHracov().remove(currentPlayer);
         }
         else{
-            System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" zaplatil daň 2000.0");
+            System.out.println(currentPlayer.getName()+" zaplatil daň 2000.0");
         }
     }
 

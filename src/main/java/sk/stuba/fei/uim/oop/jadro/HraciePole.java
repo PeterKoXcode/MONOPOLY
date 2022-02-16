@@ -32,7 +32,7 @@ public class HraciePole {
                 case 9:
                 case 15:
                 case 21:
-                    this.hraciePole.add(new PolickoSanca());
+                    this.hraciePole.add(new PolickoSanca(new BalicekKariet()));
                     break;
                 default:
                     this.hraciePole.add(new PolickoNehnutelnost());

@@ -12,7 +12,7 @@ public class PolickoDane extends Policko{
     private HraciePole hraciePole;
 
     @Override
-    public void funkciaPolicka(Hraci hraci, int hracNaTahu, BalicekKariet balicekKariet, HraciePole hraciePole) {
+    public void funkciaPolicka(Hraci hraci, int hracNaTahu, HraciePole hraciePole) {
         this.hraci = hraci;
         this.hracNaTahu = hracNaTahu;
         this.hraciePole = hraciePole;
@@ -23,20 +23,19 @@ public class PolickoDane extends Policko{
     public PolickoDane(){}
 
     private void printDane(){
-        this.hraci.getPoleHracov().get(this.hracNaTahu-1).setPeniaze(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze()-this.cenaDane);
-        if(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getPeniaze() <= 0.0){
-            System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" nemá dostatok financií a vypadáva z hry.");
+        Hrac currentPlayer = this.hraci.getPoleHracov().get(this.hracNaTahu-1);
+        currentPlayer.setPeniaze(currentPlayer.getPeniaze()-this.cenaDane);
+        if(currentPlayer.getPeniaze() <= 0.0){
+            System.out.println(currentPlayer.getName()+" nemá dostatok financií a vypadáva z hry.");
 
             // odstranenie majetku
-            for(int i = 0; i < this.hraciePole.getHraciePole().size(); i++){
-
-            }
 
 
-            this.hraci.getPoleHracov().remove(this.hraci.getPoleHracov().get(this.hracNaTahu-1));
+
+            this.hraci.getPoleHracov().remove(currentPlayer);
         }
         else{
-            System.out.println(this.hraci.getPoleHracov().get(this.hracNaTahu-1).getName()+" zaplatil daň 2000.0");
+            System.out.println(currentPlayer.getName()+" zaplatil daň 2000.0");
         }
     }
 
