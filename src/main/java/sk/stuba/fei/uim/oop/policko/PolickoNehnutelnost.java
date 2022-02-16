@@ -33,13 +33,37 @@ public class PolickoNehnutelnost extends Policko{
 
     private void printNehnutelnost(){
         Hrac currectPlayer = this.hraci.getPoleHracov().get(this.hracNaTahu-1);
-        if(!this.naPredaj && this.owner != currectPlayer){ // ak hrac ktory stupil na nehnutelnost nie je majitel a nehnutelnost nie je na predaj , tak..
-            currectPlayer.setPeniaze(currectPlayer.getPeniaze()-this.cenaStojneho);   // hrac ktory stupil na nehnutelnost zaplati stojne
+        if(!this.naPredaj && this.owner != currectPlayer){                                                              // ak hrac ktory stupil na nehnutelnost nie je majitel a nehnutelnost nie je na predaj , tak..
+            currectPlayer.setPeniaze(currectPlayer.getPeniaze()-this.cenaStojneho);                                     // hrac ktory stupil na nehnutelnost zaplati stojne
             if(currectPlayer.getPeniaze() <= 0.0){
                 System.out.println(currectPlayer.getName()+" nemá dostatok financií a vypadáva z hry");
                 //this.hraci.getPoleHracov().get(hracNaTahu-1).getVlastnictvo().set(i,null);
 
-
+                for(int i = 0; i < this.hraciePole.getHraciePole().size(); i++){
+                    switch (i){
+                        case 1:
+                        case 2:
+                        case 4:
+                        case 5:
+                        case 7:
+                        case 8:
+                        case 10:
+                        case 11:
+                        case 13:
+                        case 14:
+                        case 16:
+                        case 17:
+                        case 19:
+                        case 20:
+                        case 22:
+                        case 23:
+                            PolickoNehnutelnost polickoNehnutelnost = (PolickoNehnutelnost) this.hraciePole.getHraciePole().get(i);
+                            if(polickoNehnutelnost.owner == currectPlayer){
+                                polickoNehnutelnost.owner = null;
+                            }
+                            break;
+                    }
+                }
 
                 // scenar 1 - pri vytvarani ownera konkretneho policka , zapisovat niekam
 
@@ -75,15 +99,19 @@ public class PolickoNehnutelnost extends Policko{
     private void odkupNehnutelnost(Hrac currectPlayer){
         if(currectPlayer.getPeniaze() > this.cenaOdkupi){
             char kupNekup = kupNekupNehnutelnost();
-            if(kupNekup == 'y'){
-                this.owner.setPeniaze(this.owner.getPeniaze()+this.cenaOdkupi);
-                currectPlayer.setPeniaze(currectPlayer.getPeniaze()-this.cenaOdkupi);
-                System.out.println(currectPlayer.getName()+" odkúpil nehnuteľnosť od "+this.owner.getName()+" za cenu "+this.cenaOdkupi);
-                this.owner = currectPlayer;
-            }
+            odkupCiNe(kupNekup,currectPlayer);
         }
         else{
             System.out.println(currectPlayer.getName()+" nemá dostatok financií na kúpu tejto nehnuteľnosti.");
+        }
+    }
+
+    private void odkupCiNe(char kupNekup,Hrac currectPlayer){
+        if(kupNekup == 'y'){
+            this.owner.setPeniaze(this.owner.getPeniaze()+this.cenaOdkupi);
+            currectPlayer.setPeniaze(currectPlayer.getPeniaze()-this.cenaOdkupi);
+            System.out.println(currectPlayer.getName()+" odkúpil nehnuteľnosť od "+this.owner.getName()+" za cenu "+this.cenaOdkupi);
+            this.owner = currectPlayer;
         }
     }
 

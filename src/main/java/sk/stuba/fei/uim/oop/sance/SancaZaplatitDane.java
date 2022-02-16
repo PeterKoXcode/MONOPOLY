@@ -4,16 +4,19 @@ import sk.stuba.fei.uim.oop.hrac.Hrac;
 import sk.stuba.fei.uim.oop.jadro.BalicekKariet;
 import sk.stuba.fei.uim.oop.jadro.Hraci;
 import sk.stuba.fei.uim.oop.jadro.HraciePole;
+import sk.stuba.fei.uim.oop.policko.PolickoNehnutelnost;
 
 public class SancaZaplatitDane extends Sanca{
     private final double cenaDane = 2000.0;
     private int hracNaTahu;
     private Hraci hraci;
+    private HraciePole hraciePole;
 
     @Override
     public void typSance(Hraci hraci, int hracNaTahu, HraciePole hraciePole, BalicekKariet balicekKariet) {
         this.hraci = hraci;
         this.hracNaTahu = hracNaTahu;
+        this.hraciePole = hraciePole;
         printSancaDane();
     }
 
@@ -25,6 +28,31 @@ public class SancaZaplatitDane extends Sanca{
             System.out.println(currentPlayer.getName()+" nemá dostatok financií a vypadáva z hry.");
 
             // odstranenie majetku
+            for(int i = 0; i < this.hraciePole.getHraciePole().size(); i++){
+                switch (i){
+                    case 1:
+                    case 2:
+                    case 4:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 11:
+                    case 13:
+                    case 14:
+                    case 16:
+                    case 17:
+                    case 19:
+                    case 20:
+                    case 22:
+                    case 23:
+                        PolickoNehnutelnost polickoNehnutelnost = (PolickoNehnutelnost) this.hraciePole.getHraciePole().get(i);
+                        if(polickoNehnutelnost.getOwner() == currentPlayer){
+                            polickoNehnutelnost.setOwner(null);
+                        }
+                        break;
+                }
+            }
 
 
             this.hraci.getPoleHracov().remove(currentPlayer);

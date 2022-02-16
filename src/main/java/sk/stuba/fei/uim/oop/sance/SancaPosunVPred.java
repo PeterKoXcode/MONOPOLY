@@ -31,7 +31,6 @@ public class SancaPosunVPred extends Sanca{
         mimoScope(currentPlayer);
         System.out.println(currentPlayer.getPeniaze());
         this.hraciePole.getHraciePole().get(currentPlayer.getPozicia()).funkciaPolicka(this.hraci,this.hracNaTahu,this.hraciePole);
-        // hadze tu exception
     }
 
     private void mimoScope(Hrac currentPlayer){
