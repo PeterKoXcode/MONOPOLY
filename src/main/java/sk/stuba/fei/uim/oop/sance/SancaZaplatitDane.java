@@ -49,6 +49,7 @@ public class SancaZaplatitDane extends Sanca{
                         PolickoNehnutelnost polickoNehnutelnost = (PolickoNehnutelnost) this.hraciePole.getHraciePole().get(i);
                         if(polickoNehnutelnost.getOwner() == currentPlayer){
                             polickoNehnutelnost.setOwner(null);
+                            polickoNehnutelnost.setNaPredaj(true);
                         }
                         break;
                 }

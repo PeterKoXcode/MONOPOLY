@@ -50,6 +50,7 @@ public class PolickoDane extends Policko{
                         PolickoNehnutelnost polickoNehnutelnost = (PolickoNehnutelnost) this.hraciePole.getHraciePole().get(i);
                         if(polickoNehnutelnost.getOwner() == currentPlayer){
                             polickoNehnutelnost.setOwner(null);
+                            polickoNehnutelnost.setNaPredaj(true);
                         }
                         break;
                 }
@@ -57,6 +58,7 @@ public class PolickoDane extends Policko{
 
 
             this.hraci.getPoleHracov().remove(currentPlayer);
+
         }
         else{
             System.out.println(currentPlayer.getName()+" zaplatil daň 2000.0");

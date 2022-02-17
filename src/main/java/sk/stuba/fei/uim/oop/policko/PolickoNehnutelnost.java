@@ -35,52 +35,52 @@ public class PolickoNehnutelnost extends Policko{
         Hrac currectPlayer = this.hraci.getPoleHracov().get(this.hracNaTahu-1);
         if(!this.naPredaj && this.owner != currectPlayer){                                                              // ak hrac ktory stupil na nehnutelnost nie je majitel a nehnutelnost nie je na predaj , tak..
             currectPlayer.setPeniaze(currectPlayer.getPeniaze()-this.cenaStojneho);                                     // hrac ktory stupil na nehnutelnost zaplati stojne
-            if(currectPlayer.getPeniaze() <= 0.0){
-                System.out.println(currectPlayer.getName()+" nemá dostatok financií a vypadáva z hry");
-                //this.hraci.getPoleHracov().get(hracNaTahu-1).getVlastnictvo().set(i,null);
-
-                for(int i = 0; i < this.hraciePole.getHraciePole().size(); i++){
-                    switch (i){
-                        case 1:
-                        case 2:
-                        case 4:
-                        case 5:
-                        case 7:
-                        case 8:
-                        case 10:
-                        case 11:
-                        case 13:
-                        case 14:
-                        case 16:
-                        case 17:
-                        case 19:
-                        case 20:
-                        case 22:
-                        case 23:
-                            PolickoNehnutelnost polickoNehnutelnost = (PolickoNehnutelnost) this.hraciePole.getHraciePole().get(i);
-                            if(polickoNehnutelnost.owner == currectPlayer){
-                                polickoNehnutelnost.owner = null;
-                            }
-                            break;
-                    }
-                }
-
-                // scenar 1 - pri vytvarani ownera konkretneho policka , zapisovat niekam
-
-                // osetrit vymazanie majetku
-                this.hraci.getPoleHracov().remove(currectPlayer);
-                return;
-            }
-            else{
-                System.out.println(currectPlayer.getName()+" zaplatil stojné v hodnote "+this.cenaStojneho);
-            }
-            odkupNehnutelnost(currectPlayer);
+            stojneAleboVypadni(currectPlayer);
         }
         else if(getOwner() == currectPlayer){
             System.out.println(currectPlayer.getName()+" zastal na svojej nehnuteľnosti.");
         }
         else{
             kupNehnutelnost(currectPlayer);
+        }
+    }
+
+    private void stojneAleboVypadni(Hrac currectPlayer){
+        if(currectPlayer.getPeniaze() <= 0.0){
+            System.out.println(currectPlayer.getName()+" nemá dostatok financií a vypadáva z hry");
+            // odstranenie majetku
+            for(int i = 0; i < this.hraciePole.getHraciePole().size(); i++){
+                switch (i){
+                    case 1:
+                    case 2:
+                    case 4:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                    case 11:
+                    case 13:
+                    case 14:
+                    case 16:
+                    case 17:
+                    case 19:
+                    case 20:
+                    case 22:
+                    case 23:
+                        PolickoNehnutelnost polickoNehnutelnost = (PolickoNehnutelnost) this.hraciePole.getHraciePole().get(i);
+                        if(polickoNehnutelnost.owner == currectPlayer){
+                            polickoNehnutelnost.owner = null;
+                            polickoNehnutelnost.naPredaj = true;
+                        }
+                        break;
+                }
+            }
+
+            this.hraci.getPoleHracov().remove(currectPlayer);
+        }
+        else{
+            System.out.println(currectPlayer.getName()+" zaplatil stojné v hodnote "+this.cenaStojneho);
+            odkupNehnutelnost(currectPlayer);
         }
     }
 
