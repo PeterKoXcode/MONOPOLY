@@ -9,7 +9,7 @@ public class PolickoSanca extends Policko{
 
     private Hraci hraci;
     private int hracNaTahu;
-    private BalicekKariet balicekKariet;
+    private final BalicekKariet balicekKariet;
     private HraciePole hraciePole;
 
     @Override
